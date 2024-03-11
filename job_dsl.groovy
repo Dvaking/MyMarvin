@@ -35,7 +35,7 @@ job('Tools/SEED') {
             external('job_dsl.groovy')
         }
     }
-    triggers {
-        manualTrigger()
-    }
+    // triggers {
+    //     manualTrigger()
+    // }
 }

@@ -33,21 +33,33 @@ freeStyleJob('/Tools/SEED') {
     }
     steps {
         dsl {
-            text('''job ("\$DISPLAY_NAME") {
-            wrappers {
-                preBuildCleanup {
-                includePattern('**/target/**')
-                deleteDirectories()
-                cleanupParameter('CLEANUP')
-                }
+            scriptText = '''
+job(DISPLAY_NAME) {
+    scm {
+        git {
+            remote {
+                github(GITHUB_NAME)
             }
-            steps {
-                shell("make fclean")
-                shell("make")
-                shell("make test_run")
-                shell("make clean")
-            }
-            }'''.stripIndent())
+        }
+    }
+    wrappers {
+        preBuildCleanup { // Clean before build
+            includePattern('**/target/**')
+            deleteDirectories()
+            cleanupParameter('CLEANUP')
+        }
+    }
+    steps {
+        shell('make fclean')
+        shell('make')
+        shell('make tests_run')
+        shell('make clean')
+    }
+    triggers {
+        scm('H/1 * * * *')
+    }
+}
+'''
         }
     }
 }

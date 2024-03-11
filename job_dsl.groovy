@@ -2,40 +2,52 @@ folder('Tools') {
     description('Folder for miscellaneous tools.')
 }
 
-job('Tools/clone-repository') {
+freeStyleJob('Tools/clone-repository') {
     description('Clones a repository.')
     parameters {
         stringParam('GIT_REPOSITORY_URL', '', 'Git URL of the repository to clone')
     }
     wrappers {
-        preBuildCleanup { // Clean before build
+        preBuildCleanup {
             includePattern('**/target/**')
             deleteDirectories()
             cleanupParameter('CLEANUP')
         }
-
     }
     steps {
         shell('git clone ${GIT_REPOSITORY_URL}')
     }
-//     triggers {
-//         manualTrigger()
-//     }
-// }
 }
 
-job('Tools/SEED') {
-    description('Seed job for creating new jobs.')
+freeStyleJob('/Tools/SEED') {
     parameters {
-        stringParam('GITHUB_NAME', '', 'GitHub repository owner/repo_name (e.g.: "EpitechIT31000/chocolatine')
-        stringParam('DISPLAY_NAME', '', 'Display name for the job')
+        stringParam("GITHUB_NAME", "", "GitHub repository owner/repo_name (e.g.: \"EpitechIT31000/chocolatine\")")
+        stringParam("DISPLAY_NAME", "", "Display name for the job")
+    }
+    wrappers {
+        preBuildCleanup {
+            includePattern('**/target/**')
+            deleteDirectories()
+            cleanupParameter('CLEANUP')
+        }
     }
     steps {
         dsl {
-            external('job_dsl.groovy')
+            text('''job ("\$DISPLAY_NAME") {
+            wrappers {
+                preBuildCleanup {
+                includePattern('**/target/**')
+                deleteDirectories()
+                cleanupParameter('CLEANUP')
+                }
+            }
+            steps {
+                shell("make fclean")
+                shell("make")
+                shell("make test")
+                shell("make clean")
+            }
+            }'''.stripIndent())
         }
     }
-    // triggers {
-    //     manualTrigger()
-    // }
 }

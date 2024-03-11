@@ -18,9 +18,10 @@ job('Tools/clone-repository') {
     steps {
         shell('git clone ${GIT_REPOSITORY_URL}')
     }
-    triggers {
-        manualTrigger()
-    }
+//     triggers {
+//         manualTrigger()
+//     }
+// }
 }
 
 job('Tools/SEED') {

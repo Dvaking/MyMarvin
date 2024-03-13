@@ -45,13 +45,13 @@ jenkins:
               - "Job/Cancel"
               - "Job/Build"
               - "Workspace/Read"
+              - "Overall/Read"
             entries:
               - user: "vaugie_g"
           - name: "assist"
             description: "Assistant"
             permissions:
-              - "Job/Read"
-              - "Workspace/Read"
+              - "Overall/Read"
             entries:
               - user: "nasso"
 

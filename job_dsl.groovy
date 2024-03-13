@@ -33,7 +33,7 @@ freeStyleJob('/Tools/SEED') {
     }
     steps {
         dsl {
-            text = '''
+            scriptText = '''
 job(DISPLAY_NAME) {
     scm {
         git {

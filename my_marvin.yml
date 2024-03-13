@@ -33,6 +33,7 @@ jenkins:
             permissions:
               - "Job/Build"
               - "Workspace/Read"
+              - "Overall/Read"
             entries:
               - user: "i_dont_know"
           - name: "gorilla"

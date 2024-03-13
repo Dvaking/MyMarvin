@@ -53,6 +53,8 @@ jenkins:
             description: "Assistant"
             permissions:
               - "Overall/Read"
+              - "Job/Read"
+              - "Workspace/Read"
             entries:
               - user: "nasso"
 

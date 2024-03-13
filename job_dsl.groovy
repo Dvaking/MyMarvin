@@ -33,7 +33,7 @@ freeStyleJob('/Tools/SEED') {
     }
     steps {
         dsl {
-            scriptText = '''
+            text = '''
 job(DISPLAY_NAME) {
     scm {
         git {
@@ -56,7 +56,7 @@ job(DISPLAY_NAME) {
         shell('make clean')
     }
     triggers {
-        scm('H/1 * * * *')
+        scm('*/1 * * * *')
     }
 }
 '''

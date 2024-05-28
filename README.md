@@ -10,6 +10,8 @@ The aim of this project is to understand and use [Jenkins](https://www.jenkins.i
 ## Technologies
 
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://docs.docker.com/)
+![Groovy](https://img.shields.io/badge/groovy-passing?style=for-the-badge&logo=groovy&labelColor=Groovy&color=blue&link=https%3A%2F%2Ffr.wikipedia.org%2Fwiki%2FGroovy_(langage))
+
 
 ## Installation
 A little intro about the installation.
